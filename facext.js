@@ -21,10 +21,10 @@ window.onload = () => {
 
                 if (face_present != face_present_old) {
                 	if (face_present) {
-                    	chrome.extension.sendMessage("play");
+                        chrome.tabs.executeScript(null, {file: "play.js"});
                 	}
                 	else {
-                		chrome.extension.sendMessage("pause");
+                        chrome.tabs.executeScript(null, {file: "pause.js"});
                 	}
                 }
             }, 50);
