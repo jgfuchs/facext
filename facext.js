@@ -14,8 +14,10 @@ window.onload = () => {
 
             // Toggle video if face appears or disappears
             setInterval(() => {
+                currentPosition = ctrack.getCurrentPosition();
+
                 face_present_old = face_present;
-                face_present = (ctrack.getCurrentPosition() != false);
+                face_present = (currentPosition != false);
 
                 if (face_present != face_present_old) {
                 	if (face_present) {
@@ -29,7 +31,7 @@ window.onload = () => {
         }
     ).catch(
         (err) => {
-        	console.log("Error loading video")
+        	console.log("Error loading video");
         }
     )
 };
