@@ -2,7 +2,7 @@
 <html>
 
 	<head>
-		<title>Facext options</title>
+		<title>Facext setup</title>
 		<style>
 			body {
 				font-family: 'Lato';
@@ -43,6 +43,15 @@
 	</head>
 
 	<body>
+	  <h1>Facext setup</h1>
+
+	  <h3>Requesting webcam access...</h3>
+
+	  <h2 id="ok" style="color: green; display: none">OK</h2>
+	  <h2 id="error" style="color: red; display: none">ERROR</h2>
+
+	  <div id="status"></div><br/>
+
 		<div id="content">
 			<div id="container">
 				<video id="video" width="400" height="300" preload="auto" loop playsinline autoplay></video>

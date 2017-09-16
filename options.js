@@ -1,3 +1,5 @@
+byid = (id) => document.getElementById(id);
+
 window.onload = () => {
     var video = document.getElementById('video'),
         video_width = video.width,
@@ -7,7 +9,9 @@ window.onload = () => {
 
     navigator.mediaDevices.getUserMedia({video: true, audio: false}).then(
         (stream) => {
-            console.log("Success: ", stream);
+            byid("ok").style.display = "block";
+            byid("status").innerHTML = "You can now close this window.";
+
             video.src = window.URL.createObjectURL(stream);
             video.play();
 
@@ -28,7 +32,8 @@ window.onload = () => {
         }
     ).catch(
         (err) => {
-            console.log("Error: ", err);
+            byid("error").style.display = "block";
+            byid("status").innerHTML = "Caught " + err.name;
         }
     )
 };
