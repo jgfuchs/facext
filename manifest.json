@@ -18,10 +18,7 @@
   "options_page": "options.html",
 
   "permissions": [
-    "tabs",
-    "*://*/*",
-    "activeTab",
-    "storage"
+    "activeTab"
   ],
 
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"

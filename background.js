@@ -1,12 +1,12 @@
+chrome.extension.onMessage.addListener((request, sender, sendResponse) => {
+    chrome.tabs.executeScript(null, {file: "toggle_play_pause.js"});
+});
+
+/*
 facext = {
     active: false,
     stream: null,
 };
-
-chrome.extension.onMessage.addListener((request, sender, sendResponse) => {
-    console.log(request);
-    chrome.tabs.executeScript(null, {file: "toggle_play_pause.js"});
-});
 
 chrome.browserAction.onClicked.addListener(function(tab) {
   facext.active = !facext.active;
@@ -31,18 +31,10 @@ chrome.browserAction.onClicked.addListener(function(tab) {
             video.src = window.URL.createObjectURL(stream);
             video.play();
 
-            console.log(video);
-
             var ctrack = new clm.tracker();
             ctrack.init();
 
             ctrack.start(video);
-
-            console.log(ctrack);
-
-            chrome.tabs.executeScript(null, {file: "toggle_play_pause.js"});
-
-            // setInterval(() => {console.log(ctrack.getCurrentPosition());}, 1000);
 
          }
       ).catch(
@@ -59,3 +51,4 @@ chrome.browserAction.onClicked.addListener(function(tab) {
       }
   }
 });
+*/

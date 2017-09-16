@@ -21,19 +21,6 @@ window.onload = () => {
 
             ctrack.start(video);
 
-            setInterval(() => {
-                console.log("hello");
-                console.log(ctrack.getCurrentPosition());
-
-                face_present_old = face_present;
-                face_present = (ctrack.getCurrentPosition() != false);
-
-                if (face_present != face_present_old) {
-                    console.log("toggle");
-                    chrome.extension.sendMessage("toggle");
-                }
-            }, 1000);
-
             function drawLoop() {
                 window.requestAnimationFrame(drawLoop);
 				overlayCC.clearRect(0, 0, video_width, video_height);

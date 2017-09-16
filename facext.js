@@ -12,6 +12,7 @@ window.onload = () => {
 
             ctrack.start(video);
 
+            // Toggle video if face appears or disappears
             setInterval(() => {
                 face_present_old = face_present;
                 face_present = (ctrack.getCurrentPosition() != false);
@@ -19,7 +20,7 @@ window.onload = () => {
                 if (face_present != face_present_old) {
                     chrome.extension.sendMessage("toggle");
                 }
-            }, 250);
+            }, 50);
         }
     ).catch(
         (err) => {
