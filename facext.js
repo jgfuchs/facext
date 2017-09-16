@@ -18,7 +18,12 @@ window.onload = () => {
                 face_present = (ctrack.getCurrentPosition() != false);
 
                 if (face_present != face_present_old) {
-                    chrome.extension.sendMessage("toggle");
+                	if (face_present) {
+                    	chrome.extension.sendMessage("play");
+                	}
+                	else {
+                		chrome.extension.sendMessage("pause");
+                	}
                 }
             }, 50);
         }
