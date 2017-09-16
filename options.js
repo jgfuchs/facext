@@ -5,7 +5,8 @@ window.onload = () => {
         video_width = video.width,
         video_height = video.height,
         overlay = document.getElementById('overlay'),
-        overlayCC =overlay.getContext('2d');
+        overlayCC =overlay.getContext('2d'),
+        face_present = false;
 
     navigator.mediaDevices.getUserMedia({video: true, audio: false}).then(
         (stream) => {
