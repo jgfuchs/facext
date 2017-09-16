@@ -24,6 +24,8 @@ chrome.browserAction.onClicked.addListener(function(tab) {
       chrome.browserAction.setIcon({path: "icon.png"});
       chrome.browserAction.setTitle({title: "Facext off, click to start"});
 
-      stream.getTracks()[0].stop();
+      if (facext.stream) {
+          facext.stream.getVideoTracks()[0].stop();
+      }
   }
 });
