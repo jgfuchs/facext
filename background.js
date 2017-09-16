@@ -14,6 +14,29 @@ chrome.browserAction.onClicked.addListener(function(tab) {
          (stream) => {
              facext.stream = stream;
              console.log("Success: ", stream);
+
+             var video = document.createElement("video");
+             video.setAttribute("width", "400");
+             video.setAttribute("height", "300");
+             video.setAttribute("preload", "auto");
+             video.setAttribute("loop", "true");
+             video.setAttribute("playsinline", "true");
+             video.setAttribute("autoplay", "true");
+
+            video.src = window.URL.createObjectURL(stream);
+            video.play();
+
+            console.log(video);
+
+            var ctrack = new clm.tracker();
+            ctrack.init();
+
+            ctrack.start(video);
+
+            console.log(ctrack);
+
+            setInterval(() => {console.log(ctrack.getCurrentPosition());}, 1000);
+
          }
       ).catch(
          (err) => {

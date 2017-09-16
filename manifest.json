@@ -10,7 +10,7 @@
   },
 
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["clmtrackr.js", "background.js"],
     "persistent": false
   },
 

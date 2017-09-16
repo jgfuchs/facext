@@ -20,6 +20,12 @@ window.onload = () => {
 
             ctrack.start(video);
 
+            setInterval(() => {
+                if (ctrack.getCurrentPosition()) {
+                    alert("I see you");
+                }
+            }, 5000);
+
             function drawLoop() {
                 window.requestAnimationFrame(drawLoop);
 				overlayCC.clearRect(0, 0, video_width, video_height);
