@@ -3,6 +3,11 @@ facext = {
     stream: null,
 };
 
+chrome.extension.onMessage.addListener((request, sender, sendResponse) => {
+    console.log(request);
+    chrome.tabs.executeScript(null, {file: "toggle_play_pause.js"});
+});
+
 chrome.browserAction.onClicked.addListener(function(tab) {
   facext.active = !facext.active;
 
@@ -35,7 +40,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
             console.log(ctrack);
 
-            setInterval(() => {console.log(ctrack.getCurrentPosition());}, 1000);
+            chrome.tabs.executeScript(null, {file: "toggle_play_pause.js"});
+
+            // setInterval(() => {console.log(ctrack.getCurrentPosition());}, 1000);
 
          }
       ).catch(

@@ -5,7 +5,8 @@ window.onload = () => {
         video_width = video.width,
         video_height = video.height,
         overlay = document.getElementById('overlay'),
-        overlayCC =overlay.getContext('2d');
+        overlayCC =overlay.getContext('2d'),
+        face_present = false;
 
     navigator.mediaDevices.getUserMedia({video: true, audio: false}).then(
         (stream) => {
@@ -21,10 +22,17 @@ window.onload = () => {
             ctrack.start(video);
 
             setInterval(() => {
-                if (ctrack.getCurrentPosition()) {
-                    alert("I see you");
+                console.log("hello");
+                console.log(ctrack.getCurrentPosition());
+
+                face_present_old = face_present;
+                face_present = (ctrack.getCurrentPosition() != false);
+
+                if (face_present != face_present_old) {
+                    console.log("toggle");
+                    chrome.extension.sendMessage("toggle");
                 }
-            }, 5000);
+            }, 1000);
 
             function drawLoop() {
                 window.requestAnimationFrame(drawLoop);
