@@ -1,18 +1,18 @@
 byid = (id) => document.getElementById(id);
 
 function save_options() {
-    var emotions = document.getElementById('emotions').checked;
+    var display_emotions = document.getElementById('display_emotions').checked;
 
     chrome.storage.sync.set({
-        emotions: emotions
+        display_emotions: display_emotions
     });
 }
 
 function restore_options() {
     chrome.storage.sync.get({
-        emotions: false
+        display_emotions: false
     }, function(items) {
-        document.getElementById('emotions').checked = items.emotions;
+        document.getElementById('display_emotions').checked = items.display_emotions;
     });
 }
 
