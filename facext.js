@@ -74,9 +74,11 @@ window.onload = () => {
                 if (face_present != face_present_old) {
                 	if (face_present) {
                         chrome.tabs.executeScript(null, {file: "play.js"});
+                        document.getElementById('playpause').src = "icons/play.png";
                 	}
                 	else {
                         chrome.tabs.executeScript(null, {file: "pause.js"});
+                        document.getElementById('playpause').src = "icons/pause.png";
                 	}
                 }
             }, 0.5 * face_detection_interval);
