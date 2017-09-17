@@ -24,16 +24,14 @@ window.onload = () => {
 
                 // Toggle video if face appears or disappears
                 if (face_present != face_present_old) {
-                    var bgimage;
                 	if (face_present) {
                         chrome.tabs.executeScript(null, {file: "play.js"});
-                        bgimg = "url('icons/play.png')";
+                        document.getElementById('playpause').src = "icons/play.png";
                 	}
                 	else {
                         chrome.tabs.executeScript(null, {file: "pause.js"});
-                        bgimg = "url('icons/pause.png')";
+                        document.getElementById('playpause').src = "icons/pause.png";
                 	}
-                    document.body.style.backgroundImage = bgimg;
                 }
 
                 // Emotion detection
