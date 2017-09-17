@@ -43,8 +43,11 @@ var color_dict = {
         white: "#ffffff",
         yellow: "#ffff00"
     },
-    color_array = [];
-
-for (var color_name in color_dict) {
-    color_array.push(color_dict[color_name]);
-}
+    emotion_color_dict = {
+        angry: color_dict["darkred"],
+        disgusted: color_dict["lime"],
+        fear: color_dict["black"],
+        happy: color_dict["orange"],
+        sad: color_dict["blue"],
+        surprised: color_dict["gold"]
+    };
