@@ -3,8 +3,12 @@ window.onload = () => {
         face_present = false,
         emotion_classifier = new emotionClassifier();
 
+    var emotion_data = {}
+    for (var emotion in emotionModel) {
+        emotion_data[emotion] = [];
+    }
+
     emotion_classifier.init(emotionModel);
-    console.log(emotion_classifier);
 
     navigator.mediaDevices.getUserMedia({video: true, audio: false}).then(
         (stream) => {
@@ -37,9 +41,16 @@ window.onload = () => {
                     var current_parameters = ctrack.getCurrentParameters(),
                         emotions = emotion_classifier.meanPredict(current_parameters);
                     
-                    console.log(emotions);
+                    // console.log(emotions);
+                    if (emotions) {
+                        emotions.forEach(function (t) {
+                            var emotion = t['emotion'];
+                            emotion_data[emotion].push(t['value']);
+                        });
+                    }
+                    console.log(emotion_data);
                 }
-            }, 50);
+            }, 500);
         }
     ).catch(
         (err) => {
