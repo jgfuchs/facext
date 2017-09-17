@@ -1,4 +1,24 @@
 window.onload = () => {
+    chrome.storage.sync.get({
+        display_emotions: false
+    }, function(items) {
+        var display_emotions = items.display_emotions;
+
+        if (display_emotions) {
+            var chart = document.getElementById('chart');
+
+            chart.style.display = "inline";
+            chart.style.width = "400px";
+            chart.style.height = "300px";
+        }
+        else {
+            var playpause = document.getElementById('playpause');
+
+            playpause.style.display = "inline";
+        }
+        console.log(document.getElementById('chart'));
+    });
+
     var video = document.getElementById('video'),
         face_detection_interval = 0.5,
         emotion_detection_interval = 2,
@@ -18,7 +38,7 @@ window.onload = () => {
         });
     });
 
-    var chart = new Chart(document.getElementById("chart_div"), {
+    var chart = new Chart(document.getElementById("chart"), {
             type: 'line',
             data: {
                 labels: [0],
