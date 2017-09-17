@@ -1,5 +1,7 @@
 window.onload = () => {
     var video = document.getElementById('video'),
+        face_detection_interval = 0.5,
+        emotion_detection_interval = 2,
         face_present = false,
         emotion_classifier = new emotionClassifier(),
         emotion_names = Object.keys(emotionModel),
@@ -21,12 +23,21 @@ window.onload = () => {
             data: {
                 labels: [0],
                 datasets: datasets
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            display: false
+                        }
+                    }]
+                }
             }
         });
 
     function updateChart(emotion_data) {
         var emotion_array = [],
-            next_label = chart.data.labels[chart.data.labels.length - 1] + 1;
+            next_label = chart.data.labels[chart.data.labels.length - 1] + emotion_detection_interval;
 
         emotion_names.forEach((emotion) => {
             emotion_array.push(emotion_data[emotion]);
@@ -68,7 +79,7 @@ window.onload = () => {
                         chrome.tabs.executeScript(null, {file: "pause.js"});
                 	}
                 }
-            }, 500);
+            }, 0.5 * face_detection_interval);
 
             // Emotion detection
             setInterval(() => {
@@ -87,7 +98,7 @@ window.onload = () => {
                         updateChart(emotion_data);
                     }
                 }
-            }, 2000);
+            }, 1000 * emotion_detection_interval);
         }
     ).catch(
         (err) => {
