@@ -1,6 +1,25 @@
 byid = (id) => document.getElementById(id);
 
+function save_options() {
+    var emotions = document.getElementById('emotions').checked;
+
+    chrome.storage.sync.set({
+        emotions: emotions
+    });
+}
+
+function restore_options() {
+    chrome.storage.sync.get({
+        emotions: false
+    }, function(items) {
+        document.getElementById('emotions').checked = items.emotions;
+    });
+}
+
 window.onload = () => {
+    restore_options();
+    document.getElementById('options').addEventListener('click', save_options);
+
     var video = document.getElementById('video'),
         video_width = video.width,
         video_height = video.height,
@@ -10,8 +29,10 @@ window.onload = () => {
 
     navigator.mediaDevices.getUserMedia({video: true, audio: false}).then(
         (stream) => {
-            byid("ok").style.display = "block";
-            byid("status").innerHTML = "You can now close this window.";
+            var status = document.getElementById("status");
+
+            status.innerHTML = "OK";
+            status.style.color = "green";
 
             video.src = window.URL.createObjectURL(stream);
             video.play();
@@ -33,8 +54,12 @@ window.onload = () => {
         }
     ).catch(
         (err) => {
-            byid("error").style.display = "block";
-            byid("status").innerHTML = "Caught " + err.name;
+            var status = document.getElementById("status"),
+                error = document.getElementById("error");
+
+            status.innerHTML = "ERROR";
+            status.style.color = "red";
+            error.innerHTML = "Caught " + err.name;
         }
     )
 };
